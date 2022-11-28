@@ -226,7 +226,6 @@ public class Game1 : Game
                 }
             }
         }
-
         replayButtonColor = replayButton.Contains(msNew.Position) ? highLightedButtonColor : nonHighLightedButtonColor;
         exitButtonColor   = exitButton.Contains(msNew.Position)   ? highLightedButtonColor : nonHighLightedButtonColor;   
 
