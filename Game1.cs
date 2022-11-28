@@ -7,12 +7,14 @@ using System.Collections.Generic;
 namespace JogoDaVelha;
 public class Game1 : Game
 {
+    Button btnTeste;
     Vector2 scrSize = new Vector2() {
                                         X = 600,
                                         Y = 300
                                     };
     Dictionary<(short, short), char> bS;
         
+    List<IGameObject> sceneObjects;
     private GraphicsDeviceManager _graphics;
     private SpriteBatch spriteBatch;
     char[] square = {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
@@ -44,6 +46,7 @@ public class Game1 : Game
         PlayerOWon, //Após chamar o checkForWinners e ele retornar "O". o estado se torna este
         Draw,       //Após chamar o checkForWinners e ele retornar "Draw".
         GameEnd     //Este estado é aplicado após a validação do resultado, e seta o jogo para o estado inicial
+
     };
     GameStateDetails gameState;
     string checkForWinner()
@@ -170,6 +173,8 @@ public class Game1 : Game
             locationY+= 100;
         } 
         bS = new();
+        sceneObjects = new();
+        btnTeste = new Button(dot, exitButton, () => {this.resetBoard();}, sceneObjects);
         base.Initialize();
     }
 
@@ -185,7 +190,10 @@ public class Game1 : Game
 
     protected override void Update(GameTime gameTime)
     {
-
+        foreach (var item in sceneObjects)
+        {
+            item.Update(gameTime);
+        }
         msNew = Mouse.GetState();
         if (msOld.LeftButton != msNew.LeftButton)
         {
@@ -260,7 +268,9 @@ public class Game1 : Game
                 casoVencedor = "";    
                 break;
         }
+        
         base.Update(gameTime);
+
     }
     void resetBoard()
     {
