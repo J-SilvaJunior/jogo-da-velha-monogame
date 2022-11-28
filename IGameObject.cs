@@ -4,24 +4,13 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
 
-namespace JogoDaVelha;
+namespace MonoControls;
 
 interface IGameObject
 {
-    public virtual void Draw()
-    {
+    void Draw(SpriteBatch sb);
+    void Update(GameTime gt);
 
-    }
-    public virtual void Update(GameTime gt)
-    {
-
-    }
-    public virtual void LoadContent()
-    {
-
-    }
-    public virtual void UnloadContent()
-    {
-
-    }
+    void LoadContent();
+    void UnloadContent();
 }

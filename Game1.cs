@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
+using MonoControls;
 
 namespace JogoDaVelha;
 public class Game1 : Game
@@ -190,10 +191,11 @@ public class Game1 : Game
 
     protected override void Update(GameTime gameTime)
     {
+        /*
         foreach (var item in sceneObjects)
         {
             item.Update(gameTime);
-        }
+        }//*/
         msNew = Mouse.GetState();
         if (msOld.LeftButton != msNew.LeftButton)
         {
