@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace JogoDaVelha;
 
-class Button
+class Button : IGameObject
 {
     Rectangle DestinationRectangle;
     Texture2D texture;
@@ -20,7 +20,14 @@ class Button
     public Action Action;
     public Vector2 Center {get; private set;}
 
-    Button(Texture2D texture, Rectangle parameters)
+    public Button(Texture2D texture, Rectangle parameters)
+    {
+        DestinationRectangle = parameters;
+        this.texture = texture;
+        normalColor = new Color(200,200,200,255); 
+        highlightColor = new Color(100,100,100,255);
+    }
+    public Button(Texture2D texture, Rectangle parameters, Action action)
     {
         DestinationRectangle = parameters;
         this.texture = texture;
@@ -28,7 +35,23 @@ class Button
         highlightColor = new Color(100,100,100,255);
     }
 
-    Button(Texture2D texture, Vector2 location, Vector2 size, Color StaticColor, Color HighLightColor)
+    public Button(Texture2D texture, Rectangle parameters, Action action, List<IGameObject> subscribeList)
+    {
+        DestinationRectangle = parameters;
+        this.texture = texture;
+        normalColor = new Color(200,200,200,255); 
+        highlightColor = new Color(100,100,100,255);
+    }
+
+    public Button(Texture2D texture, Rectangle parameters, Color StaticColor, Color HighLightColor)
+    {
+        DestinationRectangle = parameters;
+        this.texture = texture;
+        normalColor = StaticColor; 
+        highlightColor = HighLightColor;
+    }
+
+    public Button(Texture2D texture, Vector2 location, Vector2 size, Color StaticColor, Color HighLightColor)
     {
         DestinationRectangle = new Rectangle()  {
                                                     X     = (int)location.X,
@@ -41,11 +64,11 @@ class Button
         highlightColor = HighLightColor;
     }
 
-    void Subscribe(List<object> list)
+    void Subscribe(List<IGameComponent> list)
     {
         try
         {
-            list.Add(this);
+            list.Add((IGameComponent)this);
         }
         catch (System.Exception)
         {
@@ -66,11 +89,22 @@ class Button
     {
         if(isVisible)
         {
-
+            OldMouseState = Mouse.GetState();
+            
+            NewMouseState = Mouse.GetState();
         }
     }
     void OnClick()
     {
-        Action();
+        if (Action != null)
+            Action();
+    }
+    void MouseOver()
+    {
+
+    }
+    void MouseExit()
+    {
+
     }
 }
