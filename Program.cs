@@ -1,3 +1,12 @@
-﻿
-using var game = new Project1.Game1();
-game.Run();
+﻿namespace JogoDaVelha
+{
+    class Program
+    {
+        public static void Main(string[] args)
+        {
+            Game1 game = new Game1();
+            game.Run();  
+        }
+    }
+}
+

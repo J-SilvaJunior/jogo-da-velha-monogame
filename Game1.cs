@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 
-namespace Project1;
+namespace JogoDaVelha;
 public class Game1 : Game
 {
     Vector2 scrSize = new Vector2() {
@@ -322,7 +322,6 @@ public class Game1 : Game
                 Color.Black
             );
         }
-
         spriteBatch.DrawString(
             gameFont,
             casoVencedor,
